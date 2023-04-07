@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import ContactForm from "../Components/ContactForm";
-import GlobalContext from "../context";
+import { GlobalContext } from "../context";
 
 const Contact = ({ children }) => {
   const {theme} = useContext(GlobalContext);

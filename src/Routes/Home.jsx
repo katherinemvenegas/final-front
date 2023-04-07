@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import Card from "../Components/Card";
-import GlobalContext from "../context";
+import { GlobalContext } from "../context";
 
 const Home = ({children}) => {
   const {theme}= useContext(GlobalContext);
