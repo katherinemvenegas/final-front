@@ -1,9 +1,9 @@
 import { useContext, useEffect } from "react";
 import Card from "../Components/Card";
-import ThemeContext from "../context";
+import GlobalContext from "../context";
 
 const Home = ({children}) => {
-  const {theme}= useContext(ThemeContext);
+  const {theme}= useContext(GlobalContext);
 
   useEffect(() => {
     //Nesse useEffect, deverá ser obtido todos os dentistas da API

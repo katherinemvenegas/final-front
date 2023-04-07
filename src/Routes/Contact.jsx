@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import ContactForm from "../Components/ContactForm";
-import ThemeContext from "../context";
+import GlobalContext from "../context";
 
 const Contact = ({ children }) => {
-  const {theme} = useContext(ThemeContext);
+  const {theme} = useContext(GlobalContext);
   return (
     <>
       <div style={{ background: theme.background, color: theme.font }}>

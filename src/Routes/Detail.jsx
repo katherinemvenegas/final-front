@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import DetailCard from "../Components/DetailCard";
-import ThemeContext from "../context";
+import GlobalContext from "../context";
 
 const Detail = ({ children }) => {
-  const {theme} = useContext(ThemeContext);
+  const {theme} = useContext(GlobalContext);
   return (
     <>
       <div style={{ background: theme.background, color: theme.font }}>

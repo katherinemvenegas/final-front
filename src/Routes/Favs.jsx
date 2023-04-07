@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import ThemeContext from "../context";
+import GlobalContext from "../context";
 
 const Favs = ({children}) => {
-    const {theme} = useContext(ThemeContext);
+    const {theme} = useContext(GlobalContext);
     return(
         <>
           <div style={{ background: theme.background, color: theme.font }}>
