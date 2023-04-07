@@ -1,17 +1,18 @@
 import { useContext } from "react";
-import DetailCard from "../Components/DetailCard";
+import ContactForm from "../Components/ContactForm";
 import ThemeContext from "../context";
 
-const Detail = ({ children }) => {
+const Contact = ({ children }) => {
   const {theme} = useContext(ThemeContext);
   return (
     <>
       <div style={{ background: theme.background, color: theme.font }}>
         {children}
-        <DetailCard />
+        <h1>Contact</h1>
+        <ContactForm />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default Detail
+export default Contact;
