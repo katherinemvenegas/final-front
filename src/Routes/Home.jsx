@@ -3,7 +3,7 @@ import Card from "../Components/Card";
 import { GlobalContext } from "../context";
 
 const Home = ({children}) => {
-  const {theme}= useContext(GlobalContext);
+  const {stateTheme}= useContext(GlobalContext);
 
   useEffect(() => {
     //Nesse useEffect, deverá ser obtido todos os dentistas da API
@@ -13,7 +13,7 @@ const Home = ({children}) => {
 
   return (
     <>
-    <div  style = {{ background : theme.background, color : theme.font}}>
+    <div  style={{  background: stateTheme.background, color: stateTheme.font}}>
     {children}
       <h1>Home</h1>
       

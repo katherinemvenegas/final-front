@@ -3,10 +3,10 @@ import ContactForm from "../Components/ContactForm";
 import { GlobalContext } from "../context";
 
 const Contact = ({ children }) => {
-  const {theme} = useContext(GlobalContext);
+  const {stateTheme} = useContext(GlobalContext);
   return (
     <>
-      <div style={{ background: theme.background, color: theme.font }}>
+      <div style={{  background: stateTheme.background, color: stateTheme.font}}>
         {children}
         <h1>Contact</h1>
         <ContactForm />
