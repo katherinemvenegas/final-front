@@ -1,10 +1,10 @@
 import { useContext } from "react";
-import ThemeContext from "../context";
+import { GlobalContext } from "../context";
 import styles from "./Navbar.module.css";
 
 const Navbar = () => {
 
-  const {handleChangeTheme} = useContext(ThemeContext);
+  const { dispatchTheme, stateTheme } = useContext(GlobalContext);
 
   return (
     <header className="sticky-top">
@@ -65,11 +65,12 @@ const Navbar = () => {
                  Na linha seguinte deverá ser feito um teste se a aplicação
                  está em dark mode e deverá utilizar o icone ☀ ou 🌙 e btn-dark ou btn-light*/}
                 <button
-                onClick={handleChangeTheme}
+                  onClick={() => dispatchTheme({ type: "toggle_theme" })}
                   className={`btn btn-light${styles.btnStyle
                     }`}
                 >
-                  ☀ 🌙{" "}
+                  {stateTheme.background === "white" ? <span>☀</span> : <span>🌙</span>}
+
                 </button>
               </li>
             </ul>
