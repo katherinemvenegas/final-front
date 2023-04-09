@@ -1,40 +1,47 @@
-import { useEffect, useState } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { GlobalContext } from "../context";
 import styles from "./Card.module.css";
 
 const Card = () => {
 
-  const [dentist, setDentist] = useState([]);
+  const { dentists, dispatchFav, isFav, dispatchIsFav } = useContext(GlobalContext);
 
-  const getAllDentists = async () =>{
-    const response = await fetch('https://jsonplaceholder.typicode.com/users');
-    const data = await response.json();
-    setDentist(data)
+  function toggleFav(dentist) {
+    const thisFav = isFav[dentist.id];
+
+    dispatchFav({
+      type: thisFav ? "remove" : "add",
+      payload: {
+        dentist
+      }
+    })
+
+    dispatchIsFav(
+      {
+        type: thisFav ? 'remove' : 'add',
+        payload: { dentist }
+      });
   }
-
-  useEffect(() => {
-    getAllDentists();
-  }, [])
 
   return (
     <>
-      {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar o css correto */}
-      {dentist.length && dentist.map((dentist) => (
-      <div className={`card`} key= {dentist.id}>
-        <img
-          className="card-img-top"
-          src="/images/doctor.jpg"
-          alt="doctor placeholder"
-        />
-        <div className={`card-body ${styles.CardBody}`}>
-          {/* Na linha seguinte o link deverá utilizar a matricula, nome e sobrenome do dentista
-          que vem da API */}
-          <Link to={`/detail/${dentist.id}`}>
-            <h5 className={`card-title ${styles.title}`}>{dentist.name}</h5>
-          </Link>
+      {dentists.length && dentists.map((dentist) => (
+        <div className={`card`} key={dentist.id}>
+          <img
+            className="card-img-top"
+            src="/images/doctor.jpg"
+            alt="doctor placeholder"
+          />
+          <div className={`card-body ${styles.CardBody}`}>
+            <Link to={`/detail/${dentist.id}`}>
+              <h5 className={`card-title ${styles.title}`}>{dentist.name}</h5>
+            </Link>
+            <a onClick={() => toggleFav(dentist)}>
+              {isFav[dentist.id] ? <p>❤️</p> : <p>🤍</p>}
+            </a>
+          </div>
         </div>
-      </div>
       ))}
     </>
   );
