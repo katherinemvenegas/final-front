@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
-import ScheduleFormModal from "./ScheduleFormModal";
-import styles from "./DetailCard.module.css";
 import { useParams } from "react-router-dom";
 
 const DetailCard = () => {
+
+  const url = 'https://jsonplaceholder.typicode.com/users';
 
   const [dentist, setDentist] = useState(undefined);
   const params = useParams();
 
   const idDentist = params.id
 
-  const getDentist = async () =>{
-    const response = await fetch(`https://jsonplaceholder.typicode.com/users/${idDentist}`);
+  const getDentist = async () => {
+    const response = await fetch(url + `/${idDentist}`);
     const data = await response.json();
     setDentist(data)
   }
@@ -20,14 +20,11 @@ const DetailCard = () => {
     getDentist();
   }, [params])
 
+
   return (
-    //As instruções que estão com {''} precisam ser 
-    //substituídas com as informações que vem da api
     <>
       <h1>Detail about Dentist </h1>
       <section className="card col-sm-12 col-lg-6 container">
-        {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-        // está em dark mode e deverá utilizar o css correto */}
           <div className={`card-body row`}>
 
           <div className="col-sm-12 col-lg-6">
@@ -39,36 +36,25 @@ const DetailCard = () => {
           </div>
           <div className="col-sm-12 col-lg-6">
             <ul className="list-group">
-              <li className="list-group-item">Nombre: {dentist?.name}</li>
+              <li className="list-group-item">Name: {dentist?.name}</li>
               <li className="list-group-item">
-                Apellido: {dentist?.username}
+                Last name: {dentist?.username}
               </li>
               <li className="list-group-item">
                 Email: {dentist?.email}
               </li>
               <li className="list-group-item">
-                Teléfono: {dentist?.phone}
+                Phone: {dentist?.phone}
               </li>
               <li className="list-group-item">
                 Website: {dentist?.website}
               </li>
             </ul>
             <div className="text-center">
-              {/* //Na linha seguinte deverá ser feito um teste se a aplicação
-              // está em dark mode e deverá utilizado o css correto */}
-              <button
-                data-bs-toggle="modal"
-                data-bs-target="#exampleModal"
-                className={`btn btn-light ${styles.button
-                  }`}
-              >
-                Marcar consulta
-              </button>
             </div>
           </div>
         </div>      
       </section>
-      <ScheduleFormModal />
     </>
   );
 };
